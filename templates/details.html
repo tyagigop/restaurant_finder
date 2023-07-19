@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+
+
+    <div style="background-color: rgb(90, 150, 140); height: 110px;" class="position-relative">
+        <div class="mx-auto shadow-lg p-4 position-absolute top-50 start-50 translate-middle">
+            <h2 class="text-center text-white">Restaurant Details</h2>
+        </div>
+        <a href="{% url 'home' %}" class="btn btn-primary mt-4 position-absolute top-0 end-0 me-3"><i class="bi bi-arrow-left-circle"></i> Back to Home</a>
+    </div>
+
+    <div class="container-fluid p-5">
+
+    <div class="card text-center">
+
+        <div class="card-header"style="background-color: #{{ restaurant.full_details.user_rating.rating_color }};">
+            <h4 class="card-title text-center" >{{ restaurant.name }}</h4> {{ restaurant.full_details.cuisines }}
+        </div>
+
+
+        
+
+
+        <div class="card-body">
+            
+
+        <div class="container-fluid row">
+            <div class="container-fluid col-4">
+                <p class="card-text">Currency Accepted: {{ restaurant.full_details.currency }}</p>
+                <p class="card-text">Average Cost for Two: {{ restaurant.full_details.average_cost_for_two }}</p>
+                <p class="card-text">Include Bogo Offers: {{ restaurant.full_details.include_bogo_offers }}</p>
+                <p class="card-text">Switch To Order Menu: {% if restaurant.full_details.switch_to_order_menu %} Yes {% else %} No {% endif %}</p>
+                <p class="card-text">Book Form Web View URL: {{ restaurant.full_details.book_form_web_view_url }}</p>
+                <p class="card-text">Has Table Booking: {% if restaurant.full_details.has_table_booking %} Yes {% else %} No {% endif %}</p>
+
+
+            </div>
+            <div class="container-fluid col-4 card">
+                    
+                    <h6 class="mt-4 mb-4"> User Ratings</h6>
+                    <p>Total votes: {{ restaurant.full_details.user_rating.votes }} </p>
+                    <p>{{ restaurant.full_details.user_rating.rating_text }} </p>
+                    <p>{{ restaurant.full_details.user_rating.aggregate_rating }} Stars </p>
+
+            </div>
+            <div class="container-fluid col-4">
+                <p class="card-text">Has Table Booking: {% if restaurant.full_details.has_table_booking %} Yes {% else %} No {% endif %}</p>
+                <p class="card-text">Has Online Delivery: {% if restaurant.full_details.has_online_delivery %} Yes {% else %} No {% endif %}</p>
+                <p class="card-text">Is Table Reservation Supported: {% if restaurant.full_details.is_table_reservation_supported %} Yes {% else %} No {% endif %}</p>
+                <p class="card-text">Opentable Support: {% if restaurant.full_details.opentable_support %} Yes {% else %} No {% endif %}</p>
+                <p class="card-text">Is Book Form Web View: {% if restaurant.full_details.is_book_form_web_view %} Yes {% else %} No {% endif %}</p>
+                <p class="card-text">Is Delivering Now: {% if restaurant.full_details.is_delivering_now %} Yes {% else %} No {% endif %}</p>
+
+                
+
+        </div>
+
+          </div>
+        </div>
+        <div class="card-footer text-muted">
+            <p>{{ restaurant.full_details.location.address }} {{ restaurant.full_details.location.zipcode }}  {{ restaurant.full_details.location.address.latitude }} </p>
+            <p>{{ restaurant.full_details.location.latitude }} {{ restaurant.full_details.location.longitude }} </p>
+        </div>
+      </div>
+    </div>
+      <!-- {{ restaurant.full_details }} -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>
