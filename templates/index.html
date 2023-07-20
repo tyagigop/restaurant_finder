@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Finder</title>
     <link href="https://fonts.googleapis.com/css?family=Font1|Font2" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Tangerine&display=swap" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
@@ -31,6 +34,49 @@
         color: rgb(130, 190, 212);
         
     }
+    .body-home-page {
+        border: 2px solid rgb(165, 199, 216);
+        border-radius: 20px 20px 20px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(87, 72, 222);
+    }
+    .footer {
+        color: rgb(117, 136, 192);
+        padding: 10px;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    /* Responsive styles using media queries */
+    @media screen and (max-width: 695px) {
+        .center-t {
+            width: 100% !important;
+            padding: 10px;
+        }
+        .search-form {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .search-input {
+            width: 100% !important;
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+        .search-button {
+            width: 100%;
+        }
+        .full-container {
+            width: 100%;
+            padding: 0% !important;
+        }
+        /* Add horizontal scrollbar to the table */
+        .table-container {
+            overflow-x: auto;
+        }
+    }
+
 </style>
 <body>
     <div style="background-color: rgb(90, 150, 140); height: 110px;" class="position-relative">
@@ -40,15 +86,21 @@
     </div>
 
     <div class="container-fluid mt-5">
-        <form class="center-t" style="width: 40%;" action="{% url 'home' %}">
+        <form class="center-t" style="width: 60%;" action="{% url 'home' %}">
             <div class="mb-3 search-form">
-                <input type="text" class="form-control search-input" name="query" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" class="form-control search-input center-t" name="query" id="exampleInputEmail1" placeholder="Search Restaurants by Dishes Name" aria-describedby="emailHelp">
                 <button type="submit" class="btn btn-outline-dark search-button">Search</button>
             </div>
         </form>
     </div>
+    {% if not n %}
+    <div class="container-sm p-5 text-center display-1 body-home-page" style="height: 400px;font-family: 'Tangerine', cursive;">
+        <p> Search the best restaurant based on dishes</p>
+    </div>
+    
 
-    <div class="container-fluid p-5 card">
+    {% else %}
+    <div class="container p-5 card full-container table-container">
     <div>
         <table class="table">
             <thead>
@@ -92,6 +144,12 @@
         </table>
         
     </div>
+    </div>
+    {% endif %}
+
+
+    <div class="footer" >
+        Designed By <span style="font-family: 'La Belle Aurore', cursive;">Hemant Tyagi</span>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
