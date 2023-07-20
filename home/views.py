@@ -5,15 +5,19 @@ from .models import *
 
 
 def home(request):
-    query = request.GET.get('query')
+    query = request.GET.get('query', '')
 
     if query:
         x1 = Restaurant.objects.filter(items__icontains=query)
     else:
-        x1 = Restaurant.objects.all()
+        x1 = {}
+
+    n = len(x1)
 
     context = {
         'x1': x1,
+        'n' : n,
+        'query': query,
     }
 
     return render(request, 'index.html', context)
